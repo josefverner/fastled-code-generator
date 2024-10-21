@@ -1,0 +1,9 @@
+.angular
+.vscode
+angular.json
+CHANGELOG.md
+dist
+karma*
+package.json
+package-lock.json
+tsconfig.*
