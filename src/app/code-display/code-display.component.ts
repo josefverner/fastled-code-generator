@@ -7,6 +7,4 @@ import { Component } from '@angular/core';
   templateUrl: './code-display.component.html',
   styleUrl: './code-display.component.scss'
 })
-export class CodeDisplayComponent {
-
-}
+export class CodeDisplayComponent {}

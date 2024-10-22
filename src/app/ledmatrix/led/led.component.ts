@@ -7,6 +7,4 @@ import { Component } from '@angular/core';
   templateUrl: './led.component.html',
   styleUrl: './led.component.scss'
 })
-export class LEDComponent {
-
-}
+export class LEDComponent {}
