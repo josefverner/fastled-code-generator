@@ -1,2 +1,13 @@
-<app-ledmatrix></app-ledmatrix>
-<router-outlet></router-outlet>
+<main>
+  <div class="main-container">
+    <section class="ledmatrix">
+      <app-ledmatrix [settings]="matrixSettings()" />
+    </section>
+    <section class="mode-selector">
+      <app-mode-selector />
+    </section>
+    <section class="code-display">
+      <app-code-display />
+    </section>
+  </div>
+</main>

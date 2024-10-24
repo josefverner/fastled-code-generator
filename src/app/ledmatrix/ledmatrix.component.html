@@ -1,1 +1,5 @@
-<p>ledmatrix works!</p>
+<div class="led-matrix">
+  @for(led of ledArray(); track $index) {
+  <app-led state="ledState()"></app-led>
+  }
+</div>
