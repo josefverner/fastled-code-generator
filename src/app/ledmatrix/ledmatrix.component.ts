@@ -1,4 +1,4 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { LED_MATRIX_CONFIG } from '../models/matrix.model';
 import { LEDMatrix } from '../types/matrix.type';
 import { LEDComponent } from './led/led.component';
@@ -12,7 +12,7 @@ import { AppStateService } from '../services/app-state.service';
   templateUrl: './ledmatrix.component.html',
   styleUrl: './ledmatrix.component.scss'
 })
-export class LEDMatrixComponent {
+export class LEDMatrixComponent implements OnInit {
   appStateService = inject(AppStateService);
   settings = input.required<LEDMatrix>();
   ledArray = signal<LED[]>([]);
