@@ -1,1 +1,1 @@
-<div class="led" (click)="toggleLED()"></div>
+<div class="led" [ngStyle]="{ 'background-color': setColor() }" (click)="toggleLED()"></div>

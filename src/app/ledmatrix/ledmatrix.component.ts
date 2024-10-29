@@ -1,5 +1,4 @@
 import { Component, inject, input, OnInit, signal } from '@angular/core';
-import { LED_MATRIX_CONFIG } from '../models/matrix.model';
 import { LEDMatrix } from '../types/matrix.type';
 import { LEDComponent } from './led/led.component';
 import { LED } from '../types/led.type';
@@ -15,11 +14,10 @@ import { AppStateService } from '../services/app-state.service';
 export class LEDMatrixComponent implements OnInit {
   appStateService = inject(AppStateService);
   settings = input.required<LEDMatrix>();
-  ledArray = signal<LED[]>([]);
+
+  ledMatrix: LED[] = [];
 
   ngOnInit() {
-    const LEDAmount = this.appStateService.getLEDArray(this.settings().rows * this.settings().cols);
-    this.ledArray.set(LEDAmount);
-    //console.log('Matrix Type:', this.settings());
+    this.ledMatrix = this.appStateService.getMatrixState();
   }
 }

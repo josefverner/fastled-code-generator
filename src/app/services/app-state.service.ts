@@ -41,21 +41,19 @@ export class AppStateService {
     return new Array(LEDAmount).fill({ state: false });
   }
 
+  getMatrixState(): LED[] {
+    return this.matrixState;
+  }
+
   setLEDState(id: number, isActive: boolean, color?: string) {
-    console.log('setLEDState');
+    const ledIndex = this.matrixState.findIndex((led) => led.id === id);
 
-    const updatedLED = this.matrixState.find((led) => {
-      return led.id === id;
-    })!;
-    this.matrixState = this.matrixState.filter((led) => led.id !== id);
-
-    updatedLED.isOn = isActive;
-
-    this.matrixState.push(updatedLED);
-
-    this.matrixState.sort((a, b) => {
-      return a.id - b.id;
-    });
-    console.log(this.matrixState);
+    if (ledIndex !== -1) {
+      this.matrixState[ledIndex] = {
+        ...this.matrixState[ledIndex],
+        isOn: isActive,
+        ...(color ? { color } : {})
+      };
+    }
   }
 }
