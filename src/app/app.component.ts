@@ -8,11 +8,10 @@ import { AppStateService } from './services/app-state.service';
 import { LEDMatrix } from './types/matrix.type';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, LEDMatrixComponent, ModeSelectorComponent, CodeDisplayComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    imports: [CommonModule, LEDMatrixComponent, ModeSelectorComponent, CodeDisplayComponent],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent {
   stateService = inject(AppStateService);

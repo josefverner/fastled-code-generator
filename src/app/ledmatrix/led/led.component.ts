@@ -7,11 +7,10 @@ const COLOR_OFF = '505050';
 const COLOR_ON = 'e9e9e9';
 
 @Component({
-  selector: 'app-led',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './led.component.html',
-  styleUrl: './led.component.scss'
+    selector: 'app-led',
+    imports: [CommonModule],
+    templateUrl: './led.component.html',
+    styleUrl: './led.component.scss'
 })
 export class LEDComponent implements AfterViewInit {
   ledState = input<LED>();

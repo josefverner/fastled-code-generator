@@ -5,11 +5,10 @@ import { LED } from '../types/led.type';
 import { AppStateService } from '../services/app-state.service';
 
 @Component({
-  selector: 'app-ledmatrix',
-  standalone: true,
-  imports: [LEDComponent],
-  templateUrl: './ledmatrix.component.html',
-  styleUrl: './ledmatrix.component.scss'
+    selector: 'app-ledmatrix',
+    imports: [LEDComponent],
+    templateUrl: './ledmatrix.component.html',
+    styleUrl: './ledmatrix.component.scss'
 })
 export class LEDMatrixComponent implements OnInit {
   appStateService = inject(AppStateService);
