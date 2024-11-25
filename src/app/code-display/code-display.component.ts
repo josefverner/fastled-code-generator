@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-code-display',
@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './code-display.component.html',
   styleUrl: './code-display.component.scss'
 })
-export class CodeDisplayComponent {}
+export class CodeDisplayComponent {
+  codeToDisplay = signal<string>('{}');
+}

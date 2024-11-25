@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { LED_MATRIX_CONFIG } from '../models/matrix.model';
 import { LEDMatrix } from '../types/matrix.type';
-import { MatrixType } from '../enums/matrix-type.enum';
 import { LED } from '../types/led.type';
+import { MatrixType } from '../enums/matrix-type.enum';
+import { StringType } from '../enums/string-type.enum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppStateService {
-  matrixState: LED[] = [];
+  private matrixState: LED[] = [];
+  private stringTypeState: StringType = StringType.SnakeLeftRight;
 
   constructor() {
     const matrix = this.getMatrixSettings();
@@ -43,6 +45,10 @@ export class AppStateService {
 
   getMatrixState(): LED[] {
     return this.matrixState;
+  }
+
+  getStringTypeState(): StringType {
+    return this.stringTypeState;
   }
 
   setLEDState(id: number, isActive: boolean, color?: string) {

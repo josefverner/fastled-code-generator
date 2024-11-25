@@ -1,6 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
 
 import { LEDMatrixComponent } from './ledmatrix/ledmatrix.component';
 import { ModeSelectorComponent } from './mode-selector/mode-selector.component';
@@ -11,7 +10,7 @@ import { LEDMatrix } from './types/matrix.type';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, LEDMatrixComponent, ModeSelectorComponent, CodeDisplayComponent],
+  imports: [CommonModule, LEDMatrixComponent, ModeSelectorComponent, CodeDisplayComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
