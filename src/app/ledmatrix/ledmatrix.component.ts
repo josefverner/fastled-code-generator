@@ -5,10 +5,10 @@ import { LED } from '../types/led.type';
 import { AppStateService } from '../services/app-state.service';
 
 @Component({
-    selector: 'app-ledmatrix',
-    imports: [LEDComponent],
-    templateUrl: './ledmatrix.component.html',
-    styleUrl: './ledmatrix.component.scss'
+  selector: 'app-ledmatrix',
+  imports: [LEDComponent],
+  templateUrl: './ledmatrix.component.html',
+  styleUrl: './ledmatrix.component.scss'
 })
 export class LEDMatrixComponent implements OnInit {
   appStateService = inject(AppStateService);
@@ -17,6 +17,12 @@ export class LEDMatrixComponent implements OnInit {
   ledMatrix: LED[] = [];
 
   ngOnInit() {
-    this.ledMatrix = this.appStateService.getMatrixState();
+    console.log('LED matrix component initialized');
+    this.ledMatrix = this.appStateService.matrixState;
+    console.log(this.ledMatrix);
+  }
+
+  ngAfterViewInit() {
+    console.log('LED matrix component ngAfterViewInit');
   }
 }

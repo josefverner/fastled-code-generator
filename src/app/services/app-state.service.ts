@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { LED_MATRIX_CONFIG } from '../models/matrix.model';
 import { LEDMatrix } from '../types/matrix.type';
 import { LED } from '../types/led.type';
@@ -9,22 +9,20 @@ import { StringType } from '../enums/string-type.enum';
   providedIn: 'root'
 })
 export class AppStateService {
-  private matrixState: LED[] = [];
+  matrixState: LED[] = [];
+  private matrixStateSignal: WritableSignal<LED[]> = signal([]);
   private stringTypeState: StringType = StringType.SnakeLeftRight;
 
   constructor() {
     const matrix = this.getMatrixSettings();
     const matrixCount = matrix.cols * matrix.rows;
 
-    for (let i = 0; i < matrixCount; i++) {
-      const led: LED = {
-        id: i,
-        isOn: false
-      };
-      this.matrixState.push(led);
-    }
+    const initialMatrix = Array.from({ length: matrixCount }, (_, id) => ({ id, isOn: false }));
 
-    console.log(this.matrixState);
+    console.log('Matrix state initialized');
+    //console.log(this.matrixState);
+    this.matrixState = initialMatrix;
+    this.matrixStateSignal.set(initialMatrix);
   }
 
   getMatrixSettings(matrixType?: MatrixType): LEDMatrix {
@@ -39,12 +37,12 @@ export class AppStateService {
     return matrix;
   }
 
-  getLEDArray(LEDAmount: number): LED[] {
-    return new Array(LEDAmount).fill({ state: false });
+  getMatrixStateSignal() {
+    return this.matrixStateSignal.asReadonly();
   }
 
-  getMatrixState(): LED[] {
-    return this.matrixState;
+  getLEDArray(LEDAmount: number): LED[] {
+    return new Array(LEDAmount).fill({ state: false });
   }
 
   getStringTypeState(): StringType {
@@ -52,14 +50,13 @@ export class AppStateService {
   }
 
   setLEDState(id: number, isActive: boolean, color?: string) {
-    const ledIndex = this.matrixState.findIndex((led) => led.id === id);
+    console.log(`Setting LED state: ${id} to ${isActive}`);
 
-    if (ledIndex !== -1) {
-      this.matrixState[ledIndex] = {
-        ...this.matrixState[ledIndex],
-        isOn: isActive,
-        ...(color ? { color } : {})
-      };
-    }
+    const updatedMatrix = this.matrixState.map((led) =>
+      led.id === id ? { ...led, isOn: isActive, color: color ?? led.color } : led
+    );
+
+    console.log(updatedMatrix);
+    this.matrixStateSignal.set(updatedMatrix);
   }
 }
