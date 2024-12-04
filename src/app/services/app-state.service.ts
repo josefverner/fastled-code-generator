@@ -3,7 +3,7 @@ import { LED_MATRIX_CONFIG } from '../models/matrix.model';
 import { LEDMatrix } from '../types/matrix.type';
 import { LED } from '../types/led.type';
 import { MatrixType } from '../enums/matrix-type.enum';
-import { StringType } from '../enums/string-type.enum';
+import { LEDConnectionType } from '../enums/led-connection-type.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +11,13 @@ import { StringType } from '../enums/string-type.enum';
 export class AppStateService {
   matrixState: LED[] = [];
   private matrixStateSignal: WritableSignal<LED[]> = signal([]);
-  private stringTypeState: StringType = StringType.SnakeLeftRight;
+  private LEDConnectionTypeState: LEDConnectionType = LEDConnectionType.SERPENTINE_HORIZONTAL_LEFT_RIGHT;
 
   constructor() {
     const matrix = this.getMatrixSettings();
     const matrixCount = matrix.cols * matrix.rows;
-
     const initialMatrix = Array.from({ length: matrixCount }, (_, id) => ({ id, isOn: false }));
 
-    console.log('Matrix state initialized');
-    //console.log(this.matrixState);
     this.matrixState = initialMatrix;
     this.matrixStateSignal.set(initialMatrix);
   }
@@ -45,8 +42,8 @@ export class AppStateService {
     return new Array(LEDAmount).fill({ state: false });
   }
 
-  getStringTypeState(): StringType {
-    return this.stringTypeState;
+  getLEDConnectiopnType(): LEDConnectionType {
+    return this.LEDConnectionTypeState;
   }
 
   setLEDState(id: number, isActive: boolean, color?: string) {

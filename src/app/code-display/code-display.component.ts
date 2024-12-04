@@ -8,10 +8,13 @@ import {
   Signal,
   signal
 } from '@angular/core';
-import { ArrayConverterService } from '../services/array-converter.service';
 import { AppStateService } from '../services/app-state.service';
 import { LED } from '../types/led.type';
 import { DataFormatter } from '../utils/data-formatter';
+import { LEDConnectionType } from '../enums/led-connection-type.enum';
+
+const STRING_PREFIX = '{';
+const STRING_SUFFIX = '}';
 
 @Component({
   selector: 'app-code-display',
@@ -20,12 +23,11 @@ import { DataFormatter } from '../utils/data-formatter';
   styleUrl: './code-display.component.scss'
 })
 export class CodeDisplayComponent {
-  // retrieve the data from the array-converter service
   appStateService = inject(AppStateService);
   cdRef: ChangeDetectorRef = inject(ChangeDetectorRef);
-  arrayConverterService = inject(ArrayConverterService);
 
   stringCode: string = '';
+  matrixType = this.appStateService.getMatrixSettings();
   matrixStateSignal: Signal<LED[]> = this.appStateService.getMatrixStateSignal();
 
   constructor() {
@@ -40,6 +42,12 @@ export class CodeDisplayComponent {
   }
 
   private getOutputString(matrix: LED[]): string {
-    return DataFormatter.formatMatrix(matrix, 16, 16, 'horizontal-serpentine');
+    const dataString = DataFormatter.formatMatrix(
+      matrix,
+      this.matrixType.rows,
+      this.matrixType.cols,
+      LEDConnectionType.SERPENTINE_HORIZONTAL_RIGHT_LEFT
+    );
+    return `${STRING_PREFIX}${dataString}${STRING_SUFFIX}`;
   }
 }

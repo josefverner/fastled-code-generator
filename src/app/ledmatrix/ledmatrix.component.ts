@@ -18,9 +18,7 @@ export class LEDMatrixComponent implements OnInit {
   ledMatrix: LED[] = [];
 
   ngOnInit() {
-    console.log('LED matrix component initialized');
     this.ledMatrix = this.appStateService.matrixState;
-    console.log(this.ledMatrix);
   }
 
   ngAfterViewInit() {
