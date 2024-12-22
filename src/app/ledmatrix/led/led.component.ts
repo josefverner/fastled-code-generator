@@ -12,24 +12,18 @@ const COLOR_ON = 'e9e9e9';
   templateUrl: './led.component.html',
   styleUrl: './led.component.scss'
 })
-export class LEDComponent implements AfterViewInit {
+export class LEDComponent {
   ledState = input<LED>();
   ledId = input<number>();
   appStateService = inject(AppStateService);
 
   toggleLED = () => {
-    const id = this.ledId()!;
-    console.log(`Toggling LED: ${id}`);
-    this.appStateService.setLEDState(id, !this.ledState()!.isOn);
+    this.appStateService.setLEDState(this.ledId()!, !this.ledState()!.isOn);
   };
 
   setColor(color = COLOR_ON): string {
     const foo = !this.ledState()?.isOn ? `#${COLOR_OFF}` : `#${color}`;
     console.log(foo);
     return foo;
-  }
-
-  ngAfterViewInit() {
-    console.log('LED component initialized');
   }
 }
