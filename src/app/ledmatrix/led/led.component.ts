@@ -22,8 +22,6 @@ export class LEDComponent {
   };
 
   setColor(color = COLOR_ON): string {
-    const foo = !this.ledState()?.isOn ? `#${COLOR_OFF}` : `#${color}`;
-    console.log(foo);
-    return foo;
+    return !this.ledState()?.isOn ? `#${COLOR_OFF}` : `#${color}`;
   }
 }

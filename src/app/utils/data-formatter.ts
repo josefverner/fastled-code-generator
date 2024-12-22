@@ -8,7 +8,6 @@ export class DataFormatter {
     }
 
     let result: number[] = [];
-    console.log('Formatting matrix with mode:', mode);
     switch (mode) {
       case LEDConnectionType.SERPENTINE_HORIZONTAL_LEFT_RIGHT:
         result = this.serpentine(matrix, rows, cols, true, true);
@@ -54,8 +53,6 @@ export class DataFormatter {
     const primaryLoop = isHorizontal ? rows : cols;
     const secondaryLoop = isHorizontal ? cols : rows;
 
-    console.log(matrix);
-
     let elements: LED[] = [];
     for (let i = 0; i < primaryLoop; i++) {
       for (let j = 0; j < secondaryLoop; j++) {
@@ -94,7 +91,6 @@ export class DataFormatter {
       }
     }
 
-    console.log('Elements:', elements);
     result.push(...elements.filter((cell) => cell.isOn).map((cell) => cell.id));
     return result;
   }
