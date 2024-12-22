@@ -1,0 +1,5 @@
+:root {
+  --LED-size: 25px;
+  --LED-border-width: 1px;
+  --LED-diameter: calc( var(--LED-size) - (var(--LED-border-width) * 2));
+}

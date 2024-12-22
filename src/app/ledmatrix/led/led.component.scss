@@ -1,9 +1,11 @@
 .led {
   display: block;
-  width: 18px;
-  height: 18px;
+  width: var(--LED-diameter);
+  height: var(--LED-diameter);
   background-color: #505050;
-  border: 1px solid #282828;
+  border-width: var(--LED-border-width);
+  border-style: solid;
+  border-color: #282828;
   border-radius: 50%;
   cursor: pointer;
 }
