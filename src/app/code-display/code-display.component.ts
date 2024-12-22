@@ -26,20 +26,10 @@ export class CodeDisplayComponent {
   appStateService = inject(AppStateService);
   cdRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-  stringCode: string = '';
   matrixType = this.appStateService.getMatrixSettings();
+
   matrixStateSignal: Signal<LED[]> = this.appStateService.getMatrixStateSignal();
-
-  constructor() {
-    console.log('Code display component initialized');
-
-    effect(() => {
-      this.stringCode = this.getOutputString(this.appStateService.getMatrixStateSignal()());
-      console.log(this.stringCode);
-      console.log('Matrix state changed');
-      this.cdRef.detectChanges();
-    });
-  }
+  stringCode: Signal<string> = computed(() => this.getOutputString(this.matrixStateSignal()));
 
   private getOutputString(matrix: LED[]): string {
     const dataString = DataFormatter.formatMatrix(
