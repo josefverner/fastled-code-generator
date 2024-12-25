@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { AppStateService } from '../../services/app-state.service';
 import { LED } from '../../types/led.type';
 import { CommonModule } from '@angular/common';
@@ -13,15 +13,15 @@ const COLOR_ON = 'e9e9e9';
   styleUrl: './led.component.scss'
 })
 export class LEDComponent {
-  ledState = input<LED>();
-  ledId = input<number>();
-  appStateService = inject(AppStateService);
+  state = input<LED>();
+  id = input<number>();
+  private appStateService = inject(AppStateService);
 
   toggleLED = () => {
-    this.appStateService.setLEDState(this.ledId()!, !this.ledState()!.isOn);
+    this.appStateService.setLEDState(this.id()!, !this.state()!.isOn);
   };
 
   setColor(color = COLOR_ON): string {
-    return !this.ledState()?.isOn ? `#${COLOR_OFF}` : `#${color}`;
+    return !this.state()?.isOn ? `#${COLOR_OFF}` : `#${color}`;
   }
 }

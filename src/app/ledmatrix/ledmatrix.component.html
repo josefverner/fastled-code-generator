@@ -1,5 +1,5 @@
 <div class="led-matrix">
   @for(led of ledMatrix; track $index) {
-  <app-led [ledState]="led" [ledId]="$index"></app-led>
+  <app-led [state]="led" [id]="$index"></app-led>
   }
 </div>

@@ -1,8 +1,6 @@
-@use '_variables' as *;
-
 .led-matrix {
   display: flex;
-  width: 400px;
-  height: 400px;
+  width: var(--matrix-width);
+  height: var(--matrix-height);
   flex-wrap: wrap;
 }
