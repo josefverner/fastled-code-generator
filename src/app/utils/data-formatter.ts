@@ -83,7 +83,7 @@ export class DataFormatter {
             if (i % 2 === 0) {
               elements.push({ id: normalIndex, isOn: matrix[verticalIndex].isOn });
             } else {
-              const reversedVerticalIndex = (cols - 1 - j) * rows + (rows - 1 - i); // Flip vertically
+              const reversedVerticalIndex = (cols - 1 - j) * rows + (rows - 1 - i);
               elements.push({ id: normalIndex, isOn: matrix[reversedVerticalIndex].isOn });
             }
           }
