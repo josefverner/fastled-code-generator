@@ -1,5 +1,5 @@
 export type LED = {
   id: number;
-  color?: string;
+  color: string;
   isOn: boolean;
 };

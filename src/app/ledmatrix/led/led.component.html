@@ -1,1 +1,7 @@
-<div class="led" [ngStyle]="{ 'background-color': setColor() }" (click)="toggleLED()"></div>
+<div
+  class="led"
+  [ngStyle]="{ 'background-color': backgroundColor() }"
+  (mousedown)="toggleLED($event)"
+  (mouseenter)="onEnter($event)"
+  (mouseleave)="onLeave($event)"
+></div>

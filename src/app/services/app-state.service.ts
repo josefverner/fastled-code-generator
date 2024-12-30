@@ -16,7 +16,7 @@ export class AppStateService {
   constructor() {
     const matrix = this.getMatrixSettings();
     const matrixCount = matrix.cols * matrix.rows;
-    const initialMatrix = Array.from({ length: matrixCount }, (_, id) => ({ id, isOn: false }));
+    const initialMatrix = Array.from({ length: matrixCount }, (_, id) => ({ id, isOn: false, color: '505050' }));
 
     this.matrixState = initialMatrix;
     this.matrixStateSignal.set(initialMatrix);
@@ -46,7 +46,7 @@ export class AppStateService {
     return this.LEDConnectionTypeState;
   }
 
-  setLEDState(id: number, isActive: boolean, color?: string) {
+  setLEDState(id: number, isActive: boolean, color: string) {
     const led = this.matrixState.find((led) => led.id === id);
 
     if (led) {

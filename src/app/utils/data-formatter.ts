@@ -63,7 +63,7 @@ export class DataFormatter {
             const reversedIndex = i * cols + (cols - 1 - j);
             const normalIndex = i * cols + j;
 
-            elements.push({ id: normalIndex, isOn: matrix[reversedIndex].isOn });
+            elements.push({ id: normalIndex, isOn: matrix[reversedIndex].isOn, color: matrix[normalIndex].color });
           }
         } else {
           if (isFromLeftToRight) {
@@ -71,20 +71,28 @@ export class DataFormatter {
             const verticalIndex = j * rows + i;
 
             if (i % 2 === 0) {
-              elements.push({ id: normalIndex, isOn: matrix[verticalIndex].isOn });
+              elements.push({ id: normalIndex, isOn: matrix[verticalIndex].isOn, color: matrix[normalIndex].color });
             } else {
               const reversedVerticalIndex = (secondaryLoop - 1 - j) * rows + i;
-              elements.push({ id: normalIndex, isOn: matrix[reversedVerticalIndex].isOn });
+              elements.push({
+                id: normalIndex,
+                isOn: matrix[reversedVerticalIndex].isOn,
+                color: matrix[normalIndex].color
+              });
             }
           } else {
             const normalIndex = i * cols + j;
             const verticalIndex = j * rows + (rows - 1 - i);
 
             if (i % 2 === 0) {
-              elements.push({ id: normalIndex, isOn: matrix[verticalIndex].isOn });
+              elements.push({ id: normalIndex, isOn: matrix[verticalIndex].isOn, color: matrix[normalIndex].color });
             } else {
               const reversedVerticalIndex = (cols - 1 - j) * rows + (rows - 1 - i);
-              elements.push({ id: normalIndex, isOn: matrix[reversedVerticalIndex].isOn });
+              elements.push({
+                id: normalIndex,
+                isOn: matrix[reversedVerticalIndex].isOn,
+                color: matrix[normalIndex].color
+              });
             }
           }
         }
